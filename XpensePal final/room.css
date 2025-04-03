@@ -1,0 +1,270 @@
+.room-summary {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.room-header {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.room-header h2 {
+    color: #2d3748;
+    margin: 0 0 0.5rem 0;
+}
+
+.room-info {
+    display: flex;
+    gap: 2rem;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.participants-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.participant-item {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.participant-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.participant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.participant-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.participant-email {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.participant-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.total-paid {
+    color: #48bb78;
+}
+
+.total-owed {
+    color: #ed8936;
+}
+
+.join-time {
+    color: #718096;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+    .participant-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .participant-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.room-info-header {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.room-info-header h2 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.member-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-2px);
+}
+
+.member-card.admin {
+    border: 2px solid #4299e1;
+}
+
+.member-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.member-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.member-role {
+    background: #e2e8f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.member-card.admin .member-role {
+    background: #4299e1;
+    color: white;
+}
+
+.member-details {
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.member-email {
+    color: #718096;
+    margin-bottom: 0.5rem;
+}
+
+.member-joined {
+    color: #718096;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.member-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.member-status {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.member-status.active {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.member-status.inactive {
+    background: #fed7d7;
+    color: #822727;
+}
+
+@media (max-width: 640px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rooms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.rooms-table th,
+.rooms-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.rooms-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.rooms-table tr:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.rooms-table td {
+    color: #4a5568;
+}
+
+.rooms-table tr:last-child td {
+    border-bottom: none;
+}
+
+#roomListContainer {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.room-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.room-status.active {
+    background-color: #c6f6d5;
+    color: #2f855a;
+}
+
+.room-status.inactive {
+    background-color: #fed7d7;
+    color: #c53030;
+}
+
+.members-list {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} 

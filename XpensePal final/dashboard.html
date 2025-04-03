@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpensePal - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo-small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="14" x="2" y="5" rx="2"/>
+                    <line x1="2" x2="22" y1="10" y2="10"/>
+                </svg>
+                <span>XpensePal</span>
+            </div>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="welcome-section">
+                <h1>Welcome to XpensePal</h1>
+                <p>Start managing your group expenses</p>
+            </div>
+
+            <div class="actions-grid">
+                <div class="action-card" onclick="createRoom()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18"/>
+                        <path d="M18.7 8.7V18H9.3"/>
+                        <path d="M3 8.7h5.2"/>
+                        <path d="M3 13.7h5.2"/>
+                    </svg>
+                    <h2>Create Room</h2>
+                    <p>Start a new expense group</p>
+                </div>
+
+                <div class="action-card" onclick="joinRoom()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M19 8v6"/>
+                        <path d="M22 11h-6"/>
+                    </svg>
+                    <h2>Join Room</h2>
+                    <p>Enter an existing room code</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>

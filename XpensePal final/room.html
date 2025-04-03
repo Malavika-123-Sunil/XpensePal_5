@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpensePal - Room Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="room.css">
+    <style>
+        .room-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .room-code-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .room-code-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .participants-list {
+            margin-top: 2rem;
+        }
+
+        .participant-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .participant-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .participant-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .participant-email {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .join-time {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .room-code-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .room-code-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .room-code {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            letter-spacing: 2px;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .members-list {
+            margin-top: 2rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .member-card.admin {
+            border: 2px solid #4299e1;
+        }
+
+        .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .member-role {
+            background: #e2e8f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .member-card.admin .member-role {
+            background: #4299e1;
+            color: white;
+        }
+
+        .member-details {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .member-email {
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-joined {
+            color: #718096;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .member-status {
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .member-status.active {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .member-status.inactive {
+            background: #fed7d7;
+            color: #822727;
+        }
+
+        @media (max-width: 640px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="room-container">
+        <h1>Room Management</h1>
+        
+        <div class="room-actions">
+            <button id="createRoomBtn" class="btn-primary">Create New Room</button>
+            
+            <div class="join-room-section">
+                <input type="text" id="roomCode" placeholder="Enter Room Code" class="room-code-input">
+                <button id="joinRoomBtn" class="btn-secondary">Join Room</button>
+            </div>
+        </div>
+
+        <div class="rooms-section">
+            <h2>Available Rooms</h2>
+            <div id="roomListContainer">
+                <!-- Room list will be displayed here -->
+            </div>
+        </div>
+
+        <div class="participants-list">
+            <h2>Current Room Participants</h2>
+            <div id="participantsList">
+                <!-- Participants will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="membersList" class="members-list">
+            <!-- Members will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    
+    <!-- Application Scripts -->
+    <script type="module" src="room.js"></script>
+</body>
+</html> 
